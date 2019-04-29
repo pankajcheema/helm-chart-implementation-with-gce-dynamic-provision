@@ -1,0 +1,18 @@
+image:
+  tag: 1.4.0
+
+persistence:
+  accessMode: ReadWriteOnce
+  size: 10Gi
+
+peer:
+  mspID: PeerMSP
+
+secrets:
+  peer:
+    cert: hlf-peer1-idcert
+    key: hlf-peer1-idkey
+    caCert: hlf-peer-cacert
+  channel: hlf-channel
+  adminCert: hlf-peer-admincert
+  adminKey: hlf-peer-adminkey

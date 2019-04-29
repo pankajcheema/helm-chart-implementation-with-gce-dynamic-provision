@@ -1,0 +1,31 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ include "hlf-ord.fullname" . }}--ord
+  labels:
+{{ include "labels.standard" . | indent 4 }}
+data:
+
+  ORDERER_CFG_PATH: /var/hyperledger/config
+  ORDERER_GENERAL_LEDGERTYPE: file
+  ORDERER_FILELEDGER_LOCATION: /var/hyperledger/ledger
+  ORDERER_GENERAL_BATCHTIMEOUT: 1s
+  ORDERER_GENERAL_BATCHSIZE_MAXMESSAGECOUNT: "10"
+  ORDERER_GENERAL_MAXWINDOWSIZE: "1000"
+  ORDERER_GENERAL_ORDERERTYPE: {{ .Values.ord.type | quote }}
+  ORDERER_GENERAL_LISTENADDRESS: 0.0.0.0
+  ORDERER_GENERAL_LISTENPORT: "7050"
+  ORDERER_GENERAL_LOGLEVEL: {{ .Values.ord.loglevel | quote }}
+  ORDERER_GENERAL_LOCALMSPDIR: /var/hyperledger/msp
+  ORDERER_GENERAL_LOCALMSPID: {{ .Values.ord.mspID | quote }}
+  ORDERER_GENERAL_GENESISMETHOD: file
+  
+  ORDERER_GENERAL_GENESISFILE: /hl_config/genesis/genesis.block
+
+  ORDERER_GENERAL_TLS_ENABLED: {{ .Values.ord.tls.server.enabled | quote }}
+
+  
+  # This is fixed prior to starting the orderer
+
+  GODEBUG: "netdns=go"
+  #ADMIN_MSP_PATH: /var/hyperledger/admin_msp

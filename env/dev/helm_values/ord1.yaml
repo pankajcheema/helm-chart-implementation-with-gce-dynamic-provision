@@ -1,0 +1,19 @@
+image:
+  tag: 1.4.0
+
+persistence:
+  accessMode: ReadWriteOnce
+  size: 5Gi
+
+ord:
+  type: solo
+  mspID: OrdererMSP
+  
+secrets:
+  ord:
+    ordereradmincerts: orderer-general-localmspdir-admincerts
+    orderercacerts: orderer-general-localmspdir-cacerts
+    ordererkystore: orderer-general-localmspdir-kystore
+    orderersigncerts: orderer-general-localmspdir-signcerts
+  genesis: hlf-genesis
+  

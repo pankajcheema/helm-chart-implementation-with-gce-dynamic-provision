@@ -1,0 +1,35 @@
+apiVersion: kubeadm.k8s.io/v1beta1
+kind: ClusterConfiguration
+kubernetesVersion: v1.14.1
+apiServer:
+  extraArgs:
+    authorization-mode: Node,RBAC
+    cloud-config: /etc/kubernetes/gce.conf
+    cloud-provider: gce
+  extraVolumes:
+  - hostPath: /etc/kubernetes/gce.conf
+    mountPath: /etc/kubernetes/gce.conf
+    name: cloud-config
+  timeoutForControlPlane: 4m0s
+certificatesDir: /etc/kubernetes/pki
+clusterName: kubernetes
+controlPlaneEndpoint: ""
+controllerManager:
+  extraArgs:
+    cloud-config: /etc/kubernetes/gce.conf
+    cloud-provider: gce
+  extraVolumes:
+  - hostPath: /etc/kubernetes/gce.conf
+    mountPath: /etc/kubernetes/gce.conf
+    name: cloud-config
+dns:
+  type: CoreDNS
+etcd:
+  local:
+    dataDir: /var/lib/etcd
+imageRepository: k8s.gcr.io
+networking:
+  dnsDomain: cluster.local
+  podSubnet: 192.168.0.0/16
+  serviceSubnet: 10.96.0.0/12
+scheduler: {}

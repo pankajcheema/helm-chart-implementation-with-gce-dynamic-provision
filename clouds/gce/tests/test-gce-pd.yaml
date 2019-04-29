@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: gce-test-pv
+spec:
+  accessModes:
+    - ReadWriteOnce
+  storageClassName: gce-pd-standard
+  resources:
+    requests:
+      storage: 30Gi
